@@ -60,7 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     audio.loop = true;
     audio.autoplay = true;
+    audio.playsInline = true;
     audio.preload = "auto";
+    audio.volume = 1;
 
     const tryPlay = () => {
         const playPromise = audio.play();
@@ -70,15 +72,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    const unlockOnFirstInteraction = () => {
+    const primeMutedAutoplay = () => {
+        audio.muted = true;
         tryPlay();
+    };
+
+    const unlockOnFirstInteraction = () => {
+        audio.muted = false;
+        tryPlay();
+        document.removeEventListener("pointerdown", unlockOnFirstInteraction);
         document.removeEventListener("click", unlockOnFirstInteraction);
         document.removeEventListener("touchstart", unlockOnFirstInteraction);
         document.removeEventListener("keydown", unlockOnFirstInteraction);
     };
 
-    tryPlay();
+    primeMutedAutoplay();
 
+    document.addEventListener("pointerdown", unlockOnFirstInteraction, { once: true });
     document.addEventListener("click", unlockOnFirstInteraction, { once: true });
     document.addEventListener("touchstart", unlockOnFirstInteraction, { once: true });
     document.addEventListener("keydown", unlockOnFirstInteraction, { once: true });
@@ -86,6 +96,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 var openBtn = document.querySelector(".openBtn")
 openBtn.addEventListener("click", () => {
+    const audio = document.getElementById("background-audio");
+    if (audio) {
+        audio.muted = false;
+        audio.play().catch(() => {});
+    }
     document.querySelector(".cardValentine").classList.add("active")
     document.querySelector(".container").classList.add("close")
 })

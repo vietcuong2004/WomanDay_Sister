@@ -252,6 +252,11 @@ html, body {
     
 }
 
+.boxTitle .partTitle {
+    white-space: nowrap;
+    line-height: 1;
+}
+
 .container .btnBox {
     position: absolute;
     top: 150%;
@@ -531,6 +536,8 @@ html, body {
 .letterContent {
     font-family: "Pacifico", cursive;
     font-weight: 400;
+    font-size: 20px;
+    line-height: 1.45;
     font-style: normal;
     white-space: pre-line;
 }
@@ -626,34 +633,130 @@ html, body {
 
 @media only screen and (max-width: 768px) {
     .boxTitle {
-        font-size: 82px;
+        width: 92vw;
+        font-size: clamp(54px, 14vw, 78px);
         top: 120%;
+        text-align: center;
     }
 
     .container .btnBox {
-        width: 400px;
-        height: 160px;
-        transform: translate(-50%, -50%) scale(0.78);
+        width: 360px;
+        height: 150px;
+        transform: translate(-50%, -50%) scale(0.74);
         transform-origin: center;
     }
 
     .openBtn {
-        font-size: 36px;
+        font-size: 32px;
         line-height: 1;
     }
 
     .cardValentine,
     .cardValentine.active {
         width: 96vw;
+        aspect-ratio: 4 / 3;
+        max-height: 62vh;
+    }
+
+    .cardValentine .left {
+        padding: 10px;
+    }
+
+    .cardValentine .left .leftFront {
+        border-left: 6px solid #c9413f;
+    }
+
+    .cardValentine .left .leftBack {
+        border-right: 6px solid #c9413f;
+    }
+
+    .boxTitleCard {
+        width: 190px;
+        height: 190px;
+    }
+
+    .boxTitleCard::before {
+        width: 172px;
+        height: 172px;
+    }
+
+    .boxTitleCard::after {
+        width: 150px;
+        height: 150px;
+    }
+
+    .artHeart {
+        width: 95%;
+        max-height: 78%;
+        object-fit: cover;
     }
 
     .des {
-        font-size: 44px;
-        bottom: 20px;
+        font-size: 36px;
+        bottom: 12px;
     }
 
     .rightContent {
-        font-size: 18px;
-        padding: 16px 12px;
+        font-size: 16px;
+        padding: 12px 10px;
+    }
+
+    .letterContent {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .boxTitle {
+        width: 94vw;
+        font-size: clamp(46px, 15vw, 62px);
+    }
+
+    .container .btnBox {
+        width: 330px;
+        height: 140px;
+        transform: translate(-50%, -50%) scale(0.68);
+    }
+
+    .openBtn {
+        font-size: 28px;
+    }
+
+    .cardValentine,
+    .cardValentine.active {
+        width: 94vw;
+        aspect-ratio: 4 / 3;
+        max-height: 56vh;
+    }
+
+    .boxTitleCard {
+        width: 150px;
+        height: 150px;
+    }
+
+    .boxTitleCard::before {
+        width: 136px;
+        height: 136px;
+    }
+
+    .boxTitleCard::after {
+        width: 118px;
+        height: 118px;
+    }
+
+    .des {
+        font-size: 30px;
+        bottom: 10px;
+    }
+
+    .rightContent {
+        font-size: 14px;
+        padding: 10px 8px;
+    }
+
+    .letterContent {
+        font-size: 14px;
+        line-height: 1.35;
     }
 }
